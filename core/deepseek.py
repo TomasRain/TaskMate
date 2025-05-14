@@ -12,9 +12,7 @@ DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 def call_deepseek(prompt: str, model: str = "deepseek-chat") -> str:
     """
     调用 DeepSeek 接口进行任务规划生成
-    :param prompt: 拼接好的 prompt 内容
-    :param model: 使用的模型类型，默认 deepseek-chat
-    :return: 大模型返回的内容字符串
+    默认 deepseek-chat
     """
     headers = {
         "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
@@ -34,7 +32,7 @@ def call_deepseek(prompt: str, model: str = "deepseek-chat") -> str:
             "https://api.deepseek.com/chat/completions",
             headers=headers,
             json=json_data,
-            timeout=20
+            timeout=40  # 设置超时时间为40秒
         )
         response.raise_for_status()
         return response.json()["choices"][0]["message"]["content"]

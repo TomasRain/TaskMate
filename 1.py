@@ -1,7 +1,4 @@
-# A simple Python program to print "Hello, World!"
+from core.tools import get_current_time
 
-def main():
-    print("Hello, World!")
-
-if __name__ == "__main__":
-    main()
+city = get_current_time()
+print("当前时间为：", city)
